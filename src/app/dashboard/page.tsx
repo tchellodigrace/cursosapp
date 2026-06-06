@@ -45,7 +45,8 @@ export default function DashboardPage() {
             .select('id')
             .eq('course_id', course.id)
           
-          const moduleIds = modules?.map(m => m.id) || []
+          // Corrigido: garante que modules é um array e extrai os IDs
+          const moduleIds = (modules || []).map((m: { id: string }) => m.id)
           
           // Depois usa os IDs na consulta
           const { count: total } = await supabase
